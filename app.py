@@ -14,16 +14,16 @@ def index():
 
 
 @app.route("/<name>", methods=["GET", "POST"])
-def printname(name):
+def printname(nam):
     if request.method == "POST":
         # If it's a POST request, insert the provided name into the database
 
-        mongo.db.student.insert_one({"name": name})
-        return "Name {} inserted successfully.".format(name)
+        mongo.db.student.insert_one({"name": nam})
+        return "Name {} inserted successfully.".format(nam)
 
     else:
         # If it's a GET request, retrieve the specified name from the database
-        student = mongo.db.student.find_one({"name": name})
+        student = mongo.db.student.find_one({"name": nam})
         if student:
             return "Hello, my name is {}.".format(student["name"])
         else:
